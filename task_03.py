@@ -1,5 +1,5 @@
 #PostgreSQL connection using psycopg2 in Python
-#QUERY to Read all records from the students table
+#QUERY to Read all records from the students table & filer recordes based on gender
 
 import psycopg2
 
