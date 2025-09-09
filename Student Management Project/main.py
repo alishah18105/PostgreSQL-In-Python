@@ -22,7 +22,7 @@ Press 3: To Add Student Information Record: '''))
         f.insert_Course_Record()
         
     elif choice == 3:
-        pass 
+        f.insert_Student_Info()
     else:
         print("Invalid input entered")
 
@@ -30,9 +30,11 @@ Press 3: To Add Student Information Record: '''))
 else:
     print("\nStudent Dashboard\n")
     seat_number = input("Enter your seat number: ")
-    semester = input("Enter your seat number: ")
+    semester = input("Enter the semester: ")
+    records = f.get_Specific_Student_Record(seat_number,semester)
 
+    print("\n|Course Number \t| Marks |")
+    print("----------------------------")
+    for record in records:
+        print(f"|{record[0]} \t| {record[1]} \t|") 
 
-# f.insert_Course_Record()
-#f.insert_Student_Record()
-#f.insert_Student_Info()

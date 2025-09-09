@@ -92,24 +92,64 @@ def insert_Course_Record():
 #--------------------------------------------------------------------------------------------------------
     
 def insert_Student_Info():
-    cur.execute(''' INSERT INTO student_info(seat_number,semester,course_no,marks)
+    seat_number = input("\nEnter the student's seat number: ")
+    semester = int(input("Enter the student's semester(eg: 1): "))
+    records = get_Specific_Student_Record(seat_number,semester)
+
+    if not records:
+        for i in range(0,6):
+            course_no = input("Enter the course_no you want to enter the marks of: ")
+            marks = int(input(f"Enter the obtained marks of course {course_no}: "))
+            cur.execute(''' INSERT INTO student_info(seat_number,semester,course_no,marks)
                 VALUES
-                ('B23110106065',1,'SE-351',80),
-                ('B23110106065',1,'SE-353',87),
-                ('B23110106065',1,'SE-355',80),
-                ('B23110106065',1,'SE-357',80),
-                ('B23110106065',1,'SE-359',86),
-                ('B23110106065',1,'SE-361',80)
-                '''
+                (%s,%s,%s,%s)
+                ''',(seat_number,semester,course_no,marks)
                 )
-    conn.commit()
+            conn.commit()
+    
+    else:
+        course_no = input("Enter the course_no you want to enter the marks of: ")
+        existing_course = [record[0] for record in records]
+        if course_no in existing_course:
+            print("Record Already Exist...")
+            choice = input("Do you want to update existing record? (Y/N): ")
+            if choice.lower() == 'y':
+                marks = int(input(f"Enter the obtained marks of course {course_no}: "))
+                update_Student_Info(marks, seat_number,semester,course_no)
+            else:
+                return
+        else:
+            marks = int(input(f"Enter the obtained marks of course {course_no}: "))
+        cur.execute(''' INSERT INTO student_info(seat_number,semester,course_no,marks)
+            VALUES
+            (%s,%s,%s,%s)
+            ''',(seat_number,semester,course_no,marks)
+            )
+        conn.commit()
+
     print("Course Information Inserted Successfully")
 
 #---------------------------------------------------------------------------------------------------------
 
-def get_Specific_Student_Record():
-    pass
+def get_Specific_Student_Record(seat_num, sem):
+    cur.execute(''' SELECT course_no, marks FROM student_info
+                WHERE seat_number = %s AND semester = %s  
+                ORDER BY course_no
+            ''', (seat_num,sem)
+            )
+    rows = cur.fetchall() 
+    return rows
 
+#----------------------------------------------------------------------------------------------------------
+
+def update_Student_Info(marks, seat_number, semester, course_no):
+    cur.execute(''' UPDATE student_info 
+                SET marks = %s
+                WHERE seat_number = %s AND semester = %s AND course_no = %s
+                 ''', (marks, seat_number, semester, course_no))
+    conn.commit()
+    
+#-------------------------------------------------------------------------------------------------------------
 def close_connection():
     cur.close()
     conn.close()
