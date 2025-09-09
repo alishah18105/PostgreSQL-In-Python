@@ -140,6 +140,15 @@ def get_Specific_Student_Record(seat_num, sem):
     rows = cur.fetchall() 
     return rows
 
+#---------------------------------------------------------------------------------------------------------
+def get_Specific_Student_Details(seat_num):
+    cur.execute('''SELECT * FROM student
+                WHERE seat_number = %s
+            ''', (seat_num,)
+            )
+    row = cur.fetchone()
+    return row
+
 #----------------------------------------------------------------------------------------------------------
 
 def update_Student_Info(marks, seat_number, semester, course_no):
