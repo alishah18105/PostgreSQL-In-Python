@@ -57,12 +57,18 @@ def create_Student_Info_Table():
 #--------------------------------------------------------------------------------------------------------
 
 def insert_Student_Record():
+    name = input("\nEnter student name: ")
+    father_name = input("Enter student's father name: ")
+    seat_number = input("Enter student's seat number: ")
+    program = input("Enter student's degree program (BSCS/BSSE): ")
+    gender = input("Enter students's gender (M/F): ")
+
+
     cur.execute(''' INSERT INTO student(name, father_name, seat_number,program,gender)
                 VALUES
-                ('Syed Ali Sultan','Syed Sultan Mehmood','B23110106065','BSSE','M'),
-                ('Neha Rehan','Syed Muhammad Rehan Ahmed','B23110006131','BSCS','F'),
-                ('Farheen Arshad','Arshad Ali','B23110106017','BSSE','F')
-                '''
+                (%s,%s,%s,%s,%s)
+                ''',
+                (name, father_name, seat_number,program,gender)
     )
     conn.commit()
     print("Student Information Has Been Added Successfully")
@@ -70,15 +76,15 @@ def insert_Student_Record():
 #--------------------------------------------------------------------------------------------------------
 
 def insert_Course_Record():
+    course_no = input("Enter the course number (eg. SE-451): ")
+    course_name = input("Enter the course title: ")
+    credit_hours = int(input("Enter the course's credit hours: "))
+
     cur.execute(''' INSERT INTO course (course_no,course_name, credit_hours)
                 VALUES 
-                ('SE-351','Programming Fundamentals', 4),
-                ('SE-353', 'Introduction To Information & Communication Technologies', 3),
-                ('SE-355', 'Calculus and Analytical Geometry', 3),
-                ('SE-357','Discrete Structure', 3),
-                ('SE-359','Functional English', 3),
-                ('SE-361','Ideology and Constitution of Pakistan', 2)
+                (%s,%s,%s)
                 '''
+                , (course_no, course_name, credit_hours)
                 )
     conn.commit()
     print("Course Information Inserted Successfully")
@@ -98,6 +104,8 @@ def insert_Student_Info():
                 )
     conn.commit()
     print("Course Information Inserted Successfully")
+
+#---------------------------------------------------------------------------------------------------------
 
 def get_Specific_Student_Record():
     pass
