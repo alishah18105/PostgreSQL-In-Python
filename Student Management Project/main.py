@@ -43,21 +43,31 @@ Press 3: To View All Courses Details: '''))
     
     if choice == 1:
         seat_number = input("Enter your seat number: ")
-        semester = input("Enter the semester: ")
+        semester = input("Enter the semester: \n")
         student_detail = f.get_Specific_Student_Details(seat_number)
         records = f.get_Specific_Student_Record(seat_number,semester)
         
-        print("\n==================================================================")
+        print("="*95)
         print(f"\nName: {student_detail[1]}\t Father Name: {student_detail[2]}")
         print(f"Seat No: {student_detail[3]}\t Program: {student_detail[4]}")
         print(f"Semester: {semester}")
 
         print("\n{:^13} | {:^15} | {:^13} |{:^14} |{:^14} |".format("Course No", "Credit Hours", "Obtained Marks", "Grade","GP"))
         print("-"*85)
+        total_gpa = 0
         for record in records:
             grade,gp = f.calculate_grading_point(record[2])
+            total_gpa = total_gpa+round(gp*int(record[1]),1)
+
             print("{:^13} | {:^15} | {:^14} | {:^13} | {:^13} |".format(record[0], record[1], record[2],grade,round((gp*int(record[1])),1)))
+        
         print("-"*85)
+        total_marks, credit_hours = f.get_Total_Marks_CredHours(seat_number,semester)
+        print(f"\nTotal Marks: {total_marks}")
+        print(f"Total Credit Hours: {credit_hours}")
+        print(f"GPA: {round(total_gpa/credit_hours,2)} ")
+        print("="*95)
+
 
 
 

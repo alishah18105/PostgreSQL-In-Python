@@ -180,7 +180,16 @@ def get_All_Course_Details():
     row = cur.fetchall()
     return row
 
-
+#----------------------------------------------------------------------------------------------------------
+def get_Total_Marks_CredHours(seat_num,sem):
+    cur.execute(''' SELECT SUM(st_in.marks), SUM(c.credit_hours) FROM student_info st_in
+                    JOIN Course c ON st_in.course_no = c.course_no
+                    WHERE seat_number = %s AND semester = %s
+                    GROUP BY st_in.seat_number, st_in.semester
+            ''', (seat_num,sem)
+            )
+    rows = cur.fetchone() 
+    return rows
 #----------------------------------------------------------------------------------------------------------
 
 def update_Student_Info(marks, seat_number, semester, course_no):
@@ -189,6 +198,10 @@ def update_Student_Info(marks, seat_number, semester, course_no):
                 WHERE seat_number = %s AND semester = %s AND course_no = %s
                  ''', (marks, seat_number, semester, course_no))
     conn.commit()
+
+
+
+
 
 #------------------------------------------------------------------------------------------------------------
 def calculate_grading_point(marks):
