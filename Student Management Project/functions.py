@@ -104,7 +104,7 @@ def insert_Student_Info():
     records = get_Specific_Student_Record(seat_number,semester)
 
     course_record = get_All_Course_Details()
-    all_course_list = [course_record[1] for course in course_record]
+    all_course_list = [course[1] for course in course_record]
     if not records:
         for i in range(0,6):
             course_no = input("Enter the course_no you want to enter the marks of: ")
@@ -149,7 +149,7 @@ def insert_Student_Info():
 def get_Specific_Student_Record(seat_num,sem):
     cur.execute(''' SELECT st_in.course_no, c.credit_hours,st_in.marks FROM student_info st_in
                     JOIN Course c ON st_in.course_no = c.course_no
-                    WHERE seat_number = %s AND semEster = %s
+                    WHERE seat_number = %s AND semester = %s
                     ORDER BY course_id
             ''', (seat_num,sem)
             )
