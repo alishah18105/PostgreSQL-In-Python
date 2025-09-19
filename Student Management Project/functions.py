@@ -135,12 +135,12 @@ def insert_Student_Info():
                 return
         else:
             marks = int(input(f"Enter the obtained marks of course {course_no}: "))
-        cur.execute(''' INSERT INTO student_info(seat_number,semester,course_no,marks)
-            VALUES
-            (%s,%s,%s,%s)
-            ''',(seat_number,semester,course_no,marks)
-            )
-        conn.commit()
+            cur.execute(''' INSERT INTO student_info(seat_number,semester,course_no,marks)
+                VALUES
+                (%s,%s,%s,%s)
+                ''',(seat_number,semester,course_no,marks)
+                )
+            conn.commit()
 
     print("Course Information Inserted Successfully")
 
