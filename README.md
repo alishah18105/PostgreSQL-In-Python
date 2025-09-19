@@ -50,8 +50,7 @@ PostgreSQL-In-Python/
 │   ├── main.py             # Entry point for student system
 │   ├── functions.py          # Contains all functions used in main.py
            
-
-````
+```
 
 
 ## ⚙️ Installation & Setup  
@@ -60,7 +59,7 @@ PostgreSQL-In-Python/
    ```bash
    git clone https://github.com/alishah18105/PostgreSQL-In-Python
    cd PostgreSQL-In-Python
-````
+    ```
 
 2. **Create Virtual Environment**
 
