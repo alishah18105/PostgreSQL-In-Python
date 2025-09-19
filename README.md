@@ -54,10 +54,7 @@ PostgreSQL-In-Python/
 
 ## ⚙️ Installation
 
-1. **Clone Repository**  
+ **Clone Repository**  
    ```bash
    git clone https://github.com/alishah18105/PostgreSQL-In-Python
-   cd PostgreSQL-In-Python
-
-
-
+  ```
