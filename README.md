@@ -53,36 +53,12 @@ PostgreSQL-In-Python/
 ```
 
 
-## ⚙️ Installation & Setup  
+## ⚙️ Installation
 
-1. **Clone Repository**  
-   ```bash
+**Clone Repository**  
+    ```bash
    git clone https://github.com/alishah18105/PostgreSQL-In-Python
    cd PostgreSQL-In-Python
     ```
 
-2. **Create Virtual Environment**
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # Linux/Mac  
-   venv\Scripts\activate      # Windows
-   ```
-
-3. **Install Requirements**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Configure Database Connection**
-
-   * Update `connect.py` with your PostgreSQL **username, password, and database name**.
-
-5. **Run Student Management System**
-
-   ```bash
-   cd student_management
-   python main.py
-   ```
 
