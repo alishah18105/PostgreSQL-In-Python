@@ -52,7 +52,6 @@ PostgreSQL-In-Python/
            
 ```
 
-
 ## ⚙️ Installation
 
 **Clone Repository**  
